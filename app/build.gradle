@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace 'com.udacity.asteroidradar'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.udacity.asteroidradar"
         minSdkVersion 24
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
         buildConfigField("String", "API_KEY", API_KEY)
@@ -31,11 +31,11 @@ android {
         buildConfig true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlin {
+        jvmToolchain(17)
     }
 }
 
