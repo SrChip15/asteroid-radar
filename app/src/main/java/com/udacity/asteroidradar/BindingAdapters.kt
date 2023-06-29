@@ -11,6 +11,7 @@ fun bindAstronomyPicture(imageView: ImageView, picture: PictureOfDay?) {
     if (picture?.mediaType == "image") {
         Picasso.with(imageView.context)
             .load(picture.url)
+            .placeholder(R.drawable.placeholder_picture_of_day)
             .into(imageView)
 
         imageView.contentDescription = picture.title
