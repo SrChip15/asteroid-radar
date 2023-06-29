@@ -65,7 +65,6 @@ dependencies {
 
     // Room database
     implementation "androidx.room:room-runtime:$version_room"
-    implementation 'androidx.core:core-ktx:+'
     kapt "androidx.room:room-compiler:$version_room"
     // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$version_room"
