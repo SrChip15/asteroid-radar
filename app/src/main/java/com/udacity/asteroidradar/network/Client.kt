@@ -10,27 +10,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
 /**
- * Provides converter factories that could be used with the retrofit client instance
- */
-object ConverterFactory {
-    /**
-     * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
-     * full Kotlin compatibility.
-     */
-    private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
-
-    val moshiConverterFactory: MoshiConverterFactory = MoshiConverterFactory.create(moshi)
-
-    /**
-     * Build the Scalars object that Retrofit will be using to parse selectively from the
-     * NeoWs network response
-     */
-    val scalarsConverterFactory: ScalarsConverterFactory = ScalarsConverterFactory.create()
-}
-
-/**
  * Singleton network client that facilitates converter factory
  * specification. This helps with dynamically setting different converters
  * when making network calls to different APIs.
@@ -64,4 +43,25 @@ object Client {
 
         return INSTANCE
     }
+}
+
+/**
+ * Provides converter factories that could be used with the retrofit client instance
+ */
+object ConverterFactory {
+    /**
+     * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
+     * full Kotlin compatibility.
+     */
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
+
+    val moshiConverterFactory: MoshiConverterFactory = MoshiConverterFactory.create(moshi)
+
+    /**
+     * Build the Scalars object that Retrofit will be using to parse selectively from the
+     * NeoWs network response
+     */
+    val scalarsConverterFactory: ScalarsConverterFactory = ScalarsConverterFactory.create()
 }
