@@ -1,6 +1,6 @@
 package com.udacity.asteroidradar.network
 
-import org.json.JSONObject
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -11,11 +11,9 @@ import retrofit2.http.Query
  */
 interface AsteroidService {
     @GET("neo/rest/v1/feed")
-    suspend fun getFeed(
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
+    fun getFeed(
         @Query("api_key") apiKey: String
-    ): JSONObject
+    ): Call<String>
 }
 
 object AsteroidApi {
