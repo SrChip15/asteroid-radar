@@ -2,7 +2,10 @@ package com.udacity.asteroidradar.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.udacity.asteroidradar.BuildConfig
 import com.udacity.asteroidradar.Constants.BASE_URL
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -34,6 +37,7 @@ object Client {
             INSTANCE = if (!::INSTANCE.isInitialized) {
                 Retrofit.Builder()
                     .baseUrl(BASE_URL)
+                    .client(Logger.getLogger())
                     .addConverterFactory(converterFactory)
                     .build()
             } else {
@@ -42,6 +46,32 @@ object Client {
         }
 
         return INSTANCE
+    }
+}
+
+object Logger {
+    fun getLogger(): OkHttpClient {
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
+        val httpClient = OkHttpClient.Builder()
+        httpClient.addInterceptor { chain ->
+            val original = chain.request()
+            val originalUrl = original.url
+
+            // add authorization as query parameter
+            val url = originalUrl.newBuilder()
+                .addQueryParameter("api_key", BuildConfig.API_KEY)
+                .build()
+
+            val requestBuilder = original.newBuilder().url(url)
+
+            val request = requestBuilder.build()
+
+            chain.proceed(request)
+        }
+
+        return httpClient.build()
     }
 }
 

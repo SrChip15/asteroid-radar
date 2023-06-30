@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.BuildConfig
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.network.ApodApi
@@ -30,7 +29,7 @@ class MainViewModel : ViewModel() {
 
     init {
         // Get list of asteroids from [AsteroidService]
-        AsteroidApi.asteroidService.getFeed(BuildConfig.API_KEY).enqueue(object:
+        AsteroidApi.asteroidService.getFeed().enqueue(object:
             Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 Timber.i("Success: ${response.isSuccessful}")
@@ -38,7 +37,7 @@ class MainViewModel : ViewModel() {
                     try {
                         val parsedJSON = JSONObject(it)
                          _asteroids.value = parseAsteroidsJsonResult(parsedJSON)
-                        Timber.i(_asteroids.value?.toString())
+                        Timber.i(_asteroids.value?.first().toString())
                     } catch (e: JSONException) {
                         Timber.e("JSON conversion: ${e.message}")
                     }
@@ -53,7 +52,7 @@ class MainViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                _picture.value = ApodApi.apodService.getPictureOfTheDay(BuildConfig.API_KEY)
+                _picture.value = ApodApi.apodService.getPictureOfTheDay()
             } catch (e: Exception) {
                 e.message?.let { Timber.e(it) }
             }

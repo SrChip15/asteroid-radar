@@ -2,7 +2,6 @@ package com.udacity.asteroidradar.network
 
 import com.udacity.asteroidradar.PictureOfDay
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 /**
  * A retrofit service to fetch the image of the day from the
@@ -10,7 +9,7 @@ import retrofit2.http.Query
  */
 interface ApodService {
     @GET("planetary/apod")
-    suspend fun getPictureOfTheDay(@Query("api_key") apiKey: String): PictureOfDay
+    suspend fun getPictureOfTheDay(): PictureOfDay
 }
 
 /**
