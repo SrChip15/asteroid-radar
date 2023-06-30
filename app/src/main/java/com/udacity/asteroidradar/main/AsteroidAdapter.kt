@@ -28,7 +28,7 @@ class AsteroidAdapter :
         }
     }
 
-    object AsteroidDiffCallback : DiffUtil.ItemCallback<Asteroid>() {
+    companion object AsteroidDiffCallback : DiffUtil.ItemCallback<Asteroid>() {
 
         override fun areItemsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
             return newItem === oldItem
