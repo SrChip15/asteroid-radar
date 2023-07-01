@@ -6,15 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.PictureOfDay
-import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
-import com.udacity.asteroidradar.network.ApodApi
-import com.udacity.asteroidradar.network.AsteroidApi
+import com.udacity.asteroidradar.network.NasaApi
 import kotlinx.coroutines.launch
-import org.json.JSONException
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import timber.log.Timber
 
 class MainViewModel : ViewModel() {
@@ -28,31 +21,15 @@ class MainViewModel : ViewModel() {
         get() = _picture
 
     init {
-        // Get list of asteroids from [AsteroidService]
-        AsteroidApi.asteroidService.getFeed().enqueue(object:
-            Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                Timber.i("Success: ${response.isSuccessful}")
-                response.body()?.let {
-                    try {
-                        val parsedJSON = JSONObject(it)
-                         _asteroids.value = parseAsteroidsJsonResult(parsedJSON)
-                        Timber.i(_asteroids.value?.first().toString())
-                    } catch (e: JSONException) {
-                        Timber.e("JSON conversion: ${e.message}")
-                    }
-                }
-                // Timber.i(responseBody)
-            }
-
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Timber.e("Failure: ${t.message}")
-            }
-        })
 
         viewModelScope.launch {
             try {
-                _picture.value = ApodApi.apodService.getPictureOfTheDay()
+                // Get picture of data from apod endpoint
+                _picture.value = NasaApi.nasaService.getPictureOfTheDay()
+
+                // Get list of asteroids from neows endpoint
+                val neoWsResponse = NasaApi.nasaService.getFeed()
+                _asteroids.value = neoWsResponse.nearEarthObjects.values.flatten()
             } catch (e: Exception) {
                 e.message?.let { Timber.e(it) }
             }
