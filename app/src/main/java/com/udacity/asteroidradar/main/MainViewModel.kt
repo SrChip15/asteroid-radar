@@ -14,14 +14,17 @@ class MainViewModel : ViewModel() {
 
     private val _asteroids = MutableLiveData<List<Asteroid>>()
     private val _picture = MutableLiveData<PictureOfDay>()
+    private val _navigatingToDetailView = MutableLiveData<Asteroid?>()
 
+
+    val navigatingToDetailView: LiveData<Asteroid?>
+        get() = _navigatingToDetailView
     val asteroids: LiveData<List<Asteroid>>
         get() = _asteroids
     val picture: LiveData<PictureOfDay>
         get() = _picture
 
     init {
-
         viewModelScope.launch {
             try {
                 // Get picture of data from apod endpoint
@@ -34,6 +37,13 @@ class MainViewModel : ViewModel() {
                 e.message?.let { Timber.e(it) }
             }
         }
+    }
 
+    fun onAsteroidClicked(asteroid: Asteroid) {
+        _navigatingToDetailView.value = asteroid
+    }
+
+    fun doneNavigatingToDetailView() {
+        _navigatingToDetailView.value = null
     }
 }

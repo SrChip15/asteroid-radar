@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
@@ -30,11 +31,23 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        viewModel.asteroids.observe(viewLifecycleOwner) { asteroids ->
-            if (asteroids.isNotEmpty()) {
-                binding.statusLoadingWheel.visibility = View.GONE
+        viewModel.apply {
+            asteroids.observe(viewLifecycleOwner) { asteroids ->
+                if (asteroids.isNotEmpty()) {
+                    binding.statusLoadingWheel.visibility = View.GONE
+                }
+            }
+
+            navigatingToDetailView.observe(viewLifecycleOwner) { asteroid ->
+                asteroid?.let {
+                    this@MainFragment.findNavController().navigate(
+                        MainFragmentDirections.actionShowDetail(asteroid)
+                    )
+                    doneNavigatingToDetailView()
+                }
             }
         }
+
 
         setHasOptionsMenu(true)
 
