@@ -14,11 +14,15 @@ class MainFragment : Fragment() {
     }
 
     @Suppress("DEPRECATION")
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding = FragmentMainBinding.inflate(inflater)
 
-        val asteroidListAdapter = AsteroidAdapter()
+        val asteroidListAdapter = AsteroidAdapter(AsteroidClickListener { asteroid ->
+            viewModel.onAsteroidClicked(asteroid)
+        })
 
         binding.asteroidRecycler.adapter = asteroidListAdapter
         binding.asteroidRecycler.setHasFixedSize(true)
