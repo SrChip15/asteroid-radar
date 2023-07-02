@@ -47,3 +47,7 @@ class AsteroidAdapter :
         holder.bind(getItem(position))
     }
 }
+
+class AsteroidClickListener(val clickListener: (asteroid: Asteroid) -> Unit) {
+    fun onClick(asteroid: Asteroid) = clickListener(asteroid)
+}

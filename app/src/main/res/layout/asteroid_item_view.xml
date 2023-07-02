@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        
+        <variable
+            name="asteroidClickListener"
+            type="com.udacity.asteroidradar.main.AsteroidClickListener" />
 
         <variable
             name="asteroid"
@@ -13,6 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> asteroidClickListener.onClick(asteroid)}"
         android:padding="8dp">
 
         <TextView
