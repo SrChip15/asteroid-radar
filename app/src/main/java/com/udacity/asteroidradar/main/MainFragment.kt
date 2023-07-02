@@ -26,6 +26,12 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        viewModel.asteroids.observe(viewLifecycleOwner) { asteroids ->
+            if (asteroids.isNotEmpty()) {
+                binding.statusLoadingWheel.visibility = View.GONE
+            }
+        }
+
         setHasOptionsMenu(true)
 
         return binding.root
