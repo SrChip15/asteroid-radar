@@ -16,17 +16,19 @@ class MainViewModel : ViewModel() {
     private val _picture = MutableLiveData<PictureOfDay>()
     private val _navigatingToDetailView = MutableLiveData<Asteroid?>()
 
-
     val navigatingToDetailView: LiveData<Asteroid?>
         get() = _navigatingToDetailView
+
     val asteroids: LiveData<List<Asteroid>>
         get() = _asteroids
+
     val picture: LiveData<PictureOfDay>
         get() = _picture
 
     init {
         viewModelScope.launch {
             try {
+                // TODO - Handle network errors
                 // Get picture of data from apod endpoint
                 _picture.value = NasaApi.nasaService.getPictureOfTheDay()
 
