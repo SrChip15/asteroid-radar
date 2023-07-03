@@ -8,7 +8,7 @@ import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.domain.Asteroid
 import com.udacity.asteroidradar.domain.PictureOfDay
-import com.udacity.asteroidradar.main.AsteroidAdapter
+import com.udacity.asteroidradar.ui.adapter.AsteroidAdapter
 
 
 @BindingAdapter("listData")

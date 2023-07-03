@@ -7,7 +7,7 @@
         
         <variable
             name="asteroidClickListener"
-            type="com.udacity.asteroidradar.main.AsteroidClickListener" />
+            type="com.udacity.asteroidradar.ui.adapter.AsteroidClickListener" />
 
         <variable
             name="asteroid"
