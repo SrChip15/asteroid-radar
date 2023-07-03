@@ -7,7 +7,7 @@
 
         <variable
             name="asteroid"
-            type="com.udacity.asteroidradar.Asteroid" />
+            type="com.udacity.asteroidradar.domain.Asteroid" />
     </data>
 
     <!-- TODO: Remove nested ViewGroups -->
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
+            app:asteroidStatusImage="@{asteroid.isPotentiallyDangerous}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@{asteroid.closeApproachData.get(0).closeApproachDate}"
+                        android:text="@{asteroid.closeApproachDate}"
                         android:textColor="@color/default_text_color"
                         android:textSize="20sp"
                         tools:text="2020-02-01" />
@@ -129,7 +129,7 @@
                     android:fontFamily="@font/roboto"
                     android:textColor="@color/default_text_color"
                     android:textSize="20sp"
-                    app:kmUnitText="@{asteroid.estimatedDiameterData.estimatedDiameterInKilometers.estimatedDiameter}"
+                    app:kmUnitText="@{asteroid.estimatedDiameter}"
                     tools:text="0.82 km" />
 
                 <TextView
@@ -150,7 +150,7 @@
                     android:fontFamily="@font/roboto"
                     android:textColor="@color/default_text_color"
                     android:textSize="20sp"
-                    app:velocityText="@{asteroid.closeApproachData.get(0).relativeVelocityData.relativeVelocity}"
+                    app:velocityText="@{asteroid.relativeVelocity}"
                     tools:text="11.9 km/s" />
 
                 <TextView
@@ -171,7 +171,7 @@
                     android:fontFamily="@font/roboto"
                     android:textColor="@color/default_text_color"
                     android:textSize="20sp"
-                    app:astronomicalUnitText="@{asteroid.closeApproachData.get(0).missDistance.distanceFromEarth}"
+                    app:astronomicalUnitText="@{asteroid.distanceFromEarth}"
                     tools:text="0.0924 au" />
 
             </LinearLayout>

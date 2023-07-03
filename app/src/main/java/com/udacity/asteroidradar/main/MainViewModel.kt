@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.PictureOfDay
+import com.udacity.asteroidradar.domain.Asteroid
+import com.udacity.asteroidradar.domain.PictureOfDay
 import com.udacity.asteroidradar.network.NasaApi
+import com.udacity.asteroidradar.network.asDomainModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -30,11 +31,12 @@ class MainViewModel : ViewModel() {
             try {
                 // TODO - Handle network errors
                 // Get picture of data from apod endpoint
-                _picture.value = NasaApi.nasaService.getPictureOfTheDay()
+                val apodResponse = NasaApi.nasaService.getPictureOfTheDay()
+                _picture.value = apodResponse.asDomainModel()
 
                 // Get list of asteroids from neows endpoint
                 val neoWsResponse = NasaApi.nasaService.getFeed()
-                _asteroids.value = neoWsResponse.nearEarthObjects.values.flatten()
+                _asteroids.value = neoWsResponse.asDomainModel()
             } catch (e: Exception) {
                 e.message?.let { Timber.e(it) }
             }

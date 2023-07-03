@@ -11,7 +11,7 @@
 
         <variable
             name="asteroid"
-            type="com.udacity.asteroidradar.Asteroid" />
+            type="com.udacity.asteroidradar.domain.Asteroid" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +44,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
-            android:text="@{asteroid.closeApproachData.get(0).closeApproachDate}"
+            android:text="@{asteroid.closeApproachDate}"
             android:textColor="@color/default_text_color"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +61,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:statusIcon="@{asteroid.potentiallyHazardous}"
+            app:statusIcon="@{asteroid.isPotentiallyDangerous}"
             tools:ignore="ContentDescription,ImageContrastCheck"
             tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
     </androidx.constraintlayout.widget.ConstraintLayout>

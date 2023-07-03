@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.network
 
-import com.udacity.asteroidradar.PictureOfDay
 import retrofit2.http.GET
 
 interface NasaService {
@@ -10,7 +9,7 @@ interface NasaService {
      * from the apod service, which is used in the main view UI
      */
     @GET("planetary/apod")
-    suspend fun getPictureOfTheDay(): PictureOfDay
+    suspend fun getPictureOfTheDay(): PictureOfDayContainer
 
     /**
      * Retrofit service to fetch a list of asteroids from the NeoWs service
@@ -18,7 +17,7 @@ interface NasaService {
      * in the main view UI
      */
     @GET("neo/rest/v1/feed")
-    suspend fun getFeed(): NeoWsResponse
+    suspend fun getFeed(): NetworkAsteroidContainer
 }
 
 /**
