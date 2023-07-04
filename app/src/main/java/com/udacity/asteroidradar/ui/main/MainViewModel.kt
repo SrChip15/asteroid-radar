@@ -1,8 +1,11 @@
 package com.udacity.asteroidradar.ui.main
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.domain.Asteroid
 import com.udacity.asteroidradar.domain.PictureOfDay
@@ -11,7 +14,7 @@ import com.udacity.asteroidradar.network.asDomainModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _asteroids = MutableLiveData<List<Asteroid>>()
     private val _picture = MutableLiveData<PictureOfDay>()
@@ -49,5 +52,18 @@ class MainViewModel : ViewModel() {
 
     fun doneNavigatingToDetailView() {
         _navigatingToDetailView.value = null
+    }
+
+    /**
+     * Factory for constructing MainViewModel with parameter
+     */
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return MainViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
     }
 }

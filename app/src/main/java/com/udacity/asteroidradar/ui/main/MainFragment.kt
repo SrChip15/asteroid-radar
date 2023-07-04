@@ -13,7 +13,11 @@ import com.udacity.asteroidradar.ui.adapter.AsteroidClickListener
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onViewCreated()"
+        }
+        val viewModelFactory = MainViewModel.Factory(activity.application)
+        ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
     }
 
     @Suppress("DEPRECATION")
