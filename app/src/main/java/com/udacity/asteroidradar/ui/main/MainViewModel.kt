@@ -7,24 +7,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.udacity.asteroidradar.database.getDatabase
 import com.udacity.asteroidradar.domain.Asteroid
 import com.udacity.asteroidradar.domain.PictureOfDay
 import com.udacity.asteroidradar.network.NasaApi
 import com.udacity.asteroidradar.network.asDomainModel
+import com.udacity.asteroidradar.repository.AsteroidsRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _asteroids = MutableLiveData<List<Asteroid>>()
     private val _picture = MutableLiveData<PictureOfDay>()
     private val _navigatingToDetailView = MutableLiveData<Asteroid?>()
 
+    private val database = getDatabase(application)
+    private val asteroidsRepository = AsteroidsRepository(database)
+
     val navigatingToDetailView: LiveData<Asteroid?>
         get() = _navigatingToDetailView
-
-    val asteroids: LiveData<List<Asteroid>>
-        get() = _asteroids
 
     val picture: LiveData<PictureOfDay>
         get() = _picture
@@ -38,13 +39,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 _picture.value = apodResponse.asDomainModel()
 
                 // Get list of asteroids from neows endpoint
-                val neoWsResponse = NasaApi.nasaService.getFeed()
-                _asteroids.value = neoWsResponse.asDomainModel()
+                // val neoWsResponse = NasaApi.nasaService.getFeed()
+                // _asteroids.value = neoWsResponse.asDomainModel()
+                asteroidsRepository.refreshAsteroids()
             } catch (e: Exception) {
                 e.message?.let { Timber.e(it) }
             }
         }
     }
+
+    val asteroids = asteroidsRepository.asteroids
 
     fun onAsteroidClicked(asteroid: Asteroid) {
         _navigatingToDetailView.value = asteroid
