@@ -5,6 +5,7 @@ import com.udacity.asteroidradar.database.DatabaseAsteroid
 import com.udacity.asteroidradar.database.DatabasePictureOfDay
 import com.udacity.asteroidradar.domain.Asteroid
 import com.udacity.asteroidradar.domain.PictureOfDay
+import com.udacity.asteroidradar.util.dateStringAsDate
 
 data class PictureOfDayContainer(
     val copyright: String,
@@ -82,17 +83,17 @@ fun NetworkAsteroidContainer.asDomainModel(): List<Asteroid> {
     }
 }
 
-fun NetworkAsteroidContainer.asDatabaseModel(): List<DatabaseAsteroid> {
+fun NetworkAsteroidContainer.asDatabaseModel(): Array<DatabaseAsteroid> {
     return nearEarthObjects.values.flatten().map {
         DatabaseAsteroid(
             id = it.id,
             codename = it.codename,
-            closeApproachDate = it.closeApproachData[0].closeApproachDate,
+            closeApproachDate = dateStringAsDate(it.closeApproachData[0].closeApproachDate),
             absoluteMagnitude = it.absoluteMagnitude,
             estimatedDiameter = it.estimatedDiameterData.estimatedDiameterInKilometers.estimatedDiameter,
             relativeVelocity = it.closeApproachData[0].relativeVelocityData.relativeVelocity,
             distanceFromEarth = it.closeApproachData[0].missDistance.distanceFromEarth,
             isPotentiallyDangerous = it.isPotentiallyHazardous,
         )
-    }
+    }.toTypedArray()
 }
