@@ -6,9 +6,10 @@ import androidx.work.WorkerParameters
 import com.udacity.asteroidradar.database.getDatabase
 import com.udacity.asteroidradar.repository.AsteroidsRepository
 import com.udacity.asteroidradar.util.getTomorrow
-import retrofit2.HttpException
+import timber.log.Timber
 
-class RefreshDataWork(appContext: Context, params: WorkerParameters): CoroutineWorker(appContext, params) {
+class RefreshDataWork(appContext: Context, params: WorkerParameters) :
+    CoroutineWorker(appContext, params) {
 
     companion object {
         const val WORK_NAME = "RefreshDataWorker"
@@ -20,10 +21,11 @@ class RefreshDataWork(appContext: Context, params: WorkerParameters): CoroutineW
         val repository = AsteroidsRepository(database)
 
         return try {
-            repository.refreshAsteroids(getTomorrow())
             repository.deleteOldAsteroids()
+            repository.refreshAsteroids(getTomorrow())
             Result.success()
-        } catch (e: HttpException) {
+        } catch (e: Exception) {
+            e.message?.let { Timber.e(it) }
             Result.retry()
         }
     }
