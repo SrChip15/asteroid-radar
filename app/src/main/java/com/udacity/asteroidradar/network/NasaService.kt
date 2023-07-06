@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.network
 
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface NasaService {
 
@@ -17,7 +18,8 @@ interface NasaService {
      * in the main view UI
      */
     @GET("neo/rest/v1/feed")
-    suspend fun getFeed(): NetworkAsteroidContainer
+    suspend fun getFeed(@Query("start_date") startDate: String): NetworkAsteroidContainer
+
 }
 
 /**
