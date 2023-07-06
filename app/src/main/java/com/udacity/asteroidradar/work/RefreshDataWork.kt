@@ -21,6 +21,7 @@ class RefreshDataWork(appContext: Context, params: WorkerParameters): CoroutineW
 
         return try {
             repository.refreshAsteroids(getTomorrow())
+            repository.deleteOldAsteroids()
             Result.success()
         } catch (e: HttpException) {
             Result.retry()
