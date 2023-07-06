@@ -7,7 +7,9 @@ import com.udacity.asteroidradar.database.asDomainModel
 import com.udacity.asteroidradar.domain.Asteroid
 import com.udacity.asteroidradar.network.NasaApi
 import com.udacity.asteroidradar.network.asDatabaseModel
+import com.udacity.asteroidradar.util.dateStringAsDate
 import com.udacity.asteroidradar.util.getToday
+import com.udacity.asteroidradar.util.getYesterday
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -22,6 +24,12 @@ class AsteroidsRepository(private val database: AsteroidDatabase) {
         withContext(Dispatchers.IO) {
             val asteroids = NasaApi.nasaService.getFeed(startDate)
             database.asteroidDao.insertAll(*asteroids.asDatabaseModel())
+        }
+    }
+
+    suspend fun deleteOldAsteroids(targetDate: String = getYesterday()) {
+        withContext(Dispatchers.IO) {
+            database.asteroidDao.deleteByDate(dateStringAsDate(targetDate))
         }
     }
 }
