@@ -15,6 +15,14 @@ fun dateAsDateString(timeInMillis: Long): String {
     return dateFormat.format(Date(timeInMillis))
 }
 
+fun getYesterday(): String {
+    val calendar = Calendar.getInstance()
+    val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+    calendar.add(Calendar.DAY_OF_YEAR, -1)
+
+    return dateFormat.format(calendar.time)
+}
+
 fun getToday(): String {
     val calendar = Calendar.getInstance()
     val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
