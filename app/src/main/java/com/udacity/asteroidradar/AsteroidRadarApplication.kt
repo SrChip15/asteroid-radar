@@ -61,5 +61,8 @@ class AsteroidRadarApplication : Application() {
             repeatingRequest
         )
 
+        // Uncomment below to demo delete operation
+        // val work = OneTimeWorkRequestBuilder<RefreshDataWork>().build()
+        // WorkManager.getInstance(applicationContext).enqueue(work)
     }
 }
