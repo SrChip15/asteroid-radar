@@ -39,8 +39,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 _picture.value = apodResponse.asDomainModel()
 
                 // Get list of asteroids from neows endpoint
-                // val neoWsResponse = NasaApi.nasaService.getFeed()
-                // _asteroids.value = neoWsResponse.asDomainModel()
                 asteroidsRepository.refreshAsteroids()
             } catch (e: Exception) {
                 e.message?.let { Timber.e(it) }
