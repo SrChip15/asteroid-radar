@@ -8,7 +8,7 @@ import com.udacity.asteroidradar.domain.PictureOfDay
 import com.udacity.asteroidradar.util.dateStringAsDate
 
 data class PictureOfDayContainer(
-    val copyright: String,
+    val copyright: String?,
     val date: String,
     @Json(name = "media_type") val mediaType: String,
     val title: String,
