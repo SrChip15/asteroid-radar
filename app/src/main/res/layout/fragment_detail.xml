@@ -9,6 +9,14 @@
             name="asteroid"
             type="com.udacity.asteroidradar.domain.Asteroid" />
     </data>
+    <!-- Removed nested ViewGroups for the following reasons
+        1. ScrollView below the ImageView gets hidden in landscape orientation making it impossible
+        to scroll past the image and view the details of the asteroid
+        2. Nested ViewGroups adds complexity to layouts and requires additional compute power
+        to carefully draw the ViewGroups within each other. -->
+
+    <!-- Scrollable Detail screen showing the details of the selected asteroid from the RecyclerView
+        in the Main Screen-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- Banner representative image of the selected asteroid -->
             <ImageView
                 android:id="@+id/activity_main_image_of_the_day"
                 android:layout_width="match_parent"
@@ -32,6 +41,7 @@
                 tools:ignore="ContentDescription"
                 tools:srcCompat="@drawable/asteroid_safe" />
 
+            <!-- Close Approach Date Label Text -->
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
@@ -64,6 +74,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 tools:text="2020-02-01" />
 
+            <!-- Absolute Magnitude Label Text -->
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
@@ -111,6 +122,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView3"
                 app:srcCompat="@drawable/ic_help_circle" />
 
+            <!-- Estimated Label Text -->
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="0dp"
@@ -143,6 +155,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
                 tools:text="0.82 km" />
 
+            <!-- Distance from Earth Label Text -->
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="0dp"
@@ -175,6 +188,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
                 tools:text="0.0924 au" />
 
+            <!-- Relative Velocity Label Text -->
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="0dp"
