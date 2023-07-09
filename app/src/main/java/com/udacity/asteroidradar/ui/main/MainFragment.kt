@@ -39,8 +39,10 @@ class MainFragment : Fragment() {
 
         viewModel.apply {
             asteroids.observe(viewLifecycleOwner) { asteroids ->
-                if (asteroids.isNotEmpty()) {
-                    binding.statusLoadingWheel.visibility = View.GONE
+                asteroids?.let {
+                    if (asteroids.isNotEmpty()) {
+                        binding.statusLoadingWheel.visibility = View.GONE
+                    }
                 }
             }
 
