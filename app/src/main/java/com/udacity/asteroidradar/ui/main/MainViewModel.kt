@@ -20,9 +20,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _picture = MutableLiveData<PictureOfDay>()
     private val _navigatingToDetailView = MutableLiveData<Asteroid?>()
+    private val _asteroids = MutableLiveData<List<Asteroid>>()
 
     private val database = getDatabase(application)
     private val asteroidsRepository = AsteroidsRepository(database)
+
+    val asteroids: LiveData<List<Asteroid>>
+        get() = _asteroids
 
     val navigatingToDetailView: LiveData<Asteroid?>
         get() = _navigatingToDetailView
@@ -40,6 +44,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
                 // Get list of asteroids from neows endpoint
                 asteroidsRepository.refreshAsteroids()
+                _asteroids.value = asteroidsRepository.asteroidsFromDatabase()
             } catch (e: Exception) {
                 e.message?.let { Timber.e(it) }
             }
@@ -55,6 +60,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun doneNavigatingToDetailView() {
         _navigatingToDetailView.value = null
     }
+
 
     /**
      * Factory for constructing MainViewModel with parameter

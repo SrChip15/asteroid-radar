@@ -1,8 +1,7 @@
 package com.udacity.asteroidradar.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.udacity.asteroidradar.database.AsteroidDatabase
+import com.udacity.asteroidradar.database.DatabaseAsteroid
 import com.udacity.asteroidradar.database.asDomainModel
 import com.udacity.asteroidradar.domain.Asteroid
 import com.udacity.asteroidradar.network.NasaApi
@@ -15,10 +14,14 @@ import kotlinx.coroutines.withContext
 
 class AsteroidsRepository(private val database: AsteroidDatabase) {
 
-    val asteroids: LiveData<List<Asteroid>> =
-        database.asteroidDao.getAsteroids().map { databaseAsteroid ->
-            databaseAsteroid.asDomainModel()
+    suspend fun asteroidsFromDatabase(): List<Asteroid> {
+        val asteroids: List<DatabaseAsteroid>
+        withContext(Dispatchers.IO) {
+            asteroids = database.asteroidDao.getAsteroids()
         }
+
+        return asteroids.asDomainModel()
+    }
 
     suspend fun refreshAsteroids(startDate: String = getToday()) {
         withContext(Dispatchers.IO) {
