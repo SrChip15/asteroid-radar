@@ -68,6 +68,16 @@ class MainFragment : Fragment() {
 
     @Suppress("OVERRIDE_DEPRECATION")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return true
+        return when (item.itemId) {
+            R.id.view_today_asteroids -> {
+                viewModel.fetchAsteroidsForToday()
+                true
+            }
+
+            else -> {
+                viewModel.fetchAsteroids()
+                true
+            }
+        }
     }
 }

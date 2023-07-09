@@ -51,7 +51,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    val asteroids = asteroidsRepository.asteroids
+    fun fetchAsteroids() {
+        viewModelScope.launch {
+            _asteroids.value = asteroidsRepository.asteroidsFromDatabase()
+        }
+    }
+
+    fun fetchAsteroidsForToday() {
+        viewModelScope.launch {
+            getAsteroidsForToday()
+        }
+    }
+
+    private suspend fun getAsteroidsForToday() {
+        _asteroids.value = asteroidsRepository.getAsteroidsForToday()
+    }
 
     fun onAsteroidClicked(asteroid: Asteroid) {
         _navigatingToDetailView.value = asteroid
