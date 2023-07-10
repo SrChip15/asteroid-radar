@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Styling for Heading TextViews -->
+    <style name="HeadingTextView" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textSize">@dimen/large_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Styling for Sub-Heading TextViews -->
+    <style name="SubHeadingTextView" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textSize">@dimen/medium_text_size</item>
+    </style>
+
 </resources>
