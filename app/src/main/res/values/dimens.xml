@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_image_of_day_height">320dp</dimen>
+    <dimen name="medium_spacer">16dp</dimen>
+    <dimen name="medium_text_size">20sp</dimen>
+    <dimen name="small_spacer">8dp</dimen>
+    <dimen name="large_text_size">24sp</dimen>
+    <dimen name="status_image_icon_size">40dp</dimen>
+</resources>
