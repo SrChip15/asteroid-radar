@@ -44,7 +44,7 @@
             <!-- Close Approach Date Label Text -->
             <TextView
                 android:id="@+id/textView2"
-                style="@style/HeadingTextView"
+                style="@style/TextAppearance.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_spacer"
@@ -58,7 +58,7 @@
 
             <TextView
                 android:id="@+id/close_approach_date"
-                style="@style/SubHeadingTextView"
+                style="@style/TextAppearance.Subtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_spacer"
@@ -72,7 +72,7 @@
             <!-- Absolute Magnitude Label Text -->
             <TextView
                 android:id="@+id/textView3"
-                style="@style/HeadingTextView"
+                style="@style/TextAppearance.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_spacer"
@@ -86,7 +86,7 @@
 
             <TextView
                 android:id="@+id/absolute_magnitude"
-                style="@style/SubHeadingTextView"
+                style="@style/TextAppearance.Subtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_spacer"
@@ -115,7 +115,7 @@
             <!-- Estimated Label Text -->
             <TextView
                 android:id="@+id/textView4"
-                style="@style/HeadingTextView"
+                style="@style/TextAppearance.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_spacer"
@@ -129,7 +129,7 @@
 
             <TextView
                 android:id="@+id/estimated_diameter"
-                style="@style/SubHeadingTextView"
+                style="@style/TextAppearance.Subtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_spacer"
@@ -143,7 +143,7 @@
             <!-- Distance from Earth Label Text -->
             <TextView
                 android:id="@+id/textView5"
-                style="@style/HeadingTextView"
+                style="@style/TextAppearance.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_spacer"
@@ -157,7 +157,7 @@
 
             <TextView
                 android:id="@+id/distance_from_earth"
-                style="@style/SubHeadingTextView"
+                style="@style/TextAppearance.Subtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_spacer"
@@ -171,7 +171,7 @@
             <!-- Relative Velocity Label Text -->
             <TextView
                 android:id="@+id/textView7"
-                style="@style/HeadingTextView"
+                style="@style/TextAppearance.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_spacer"
@@ -186,7 +186,7 @@
 
             <TextView
                 android:id="@+id/relative_velocity"
-                style="@style/SubHeadingTextView"
+                style="@style/TextAppearance.Subtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_spacer"
