@@ -21,6 +21,10 @@ in the Main screen list. The main screen will also show the NASA image of the da
 * OkHttp
 * WorkManager
 
+## Architecture
+
+<img src="screenshots/architecture.png" width="500"/>
+
 ## Screenshots
 
 <img src="screenshots/screen_1.png" width="200"/> <img src="screenshots/screen_2.png" width="200"/>
