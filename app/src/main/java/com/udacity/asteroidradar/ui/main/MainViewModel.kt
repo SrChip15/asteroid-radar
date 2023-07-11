@@ -37,7 +37,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     init {
         viewModelScope.launch {
             try {
-                // TODO - Handle network errors
                 // Get picture of data from apod endpoint
                 val apodResponse = NasaApi.nasaService.getPictureOfTheDay()
                 _picture.value = apodResponse.asDomainModel()
