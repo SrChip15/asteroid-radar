@@ -6,11 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="fontFamily">@font/roboto</item>
     </style>
 
     <!-- Styling for Heading TextViews -->
     <style name="TextAppearance.Title" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textColor">@color/default_text_color</item>
         <item name="android:textSize">@dimen/large_text_size</item>
         <item name="android:textStyle">bold</item>
