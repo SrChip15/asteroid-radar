@@ -11,19 +11,19 @@ in the Main screen list. The main screen will also show the NASA image of the da
 
 ## Key Libraries
 
-Material
-Navigation Component
-Timber
-Picasso
-Retrofit
-Moshi
-Room
-OkHttp
-WorkManager
+* Material
+* Navigation Component
+* Timber
+* Picasso
+* Retrofit
+* Moshi
+* Room
+* OkHttp
+* WorkManager
 
 ## Screenshots
 
 <img src="screenshots/screen_1.png" width="200"/> <img src="screenshots/screen_2.png" width="200"/>
 <img src="screenshots/screen_3.png" width="200"/>
 
-<img src="screenshots/screen_4.png" width="200"/>
+<img src="screenshots/screen_4.png" width="500"/>
